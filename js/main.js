@@ -64,8 +64,19 @@
 		changeSelect: function(e) {
 			var qid=this.$el.val();
 			this.collection.selected=qid;
+			// collect all selected items
+			var arr=[];
+			if(qid!=='') {
+				arr.push(qid);
+			}
 			_.each(this.options.othercollections, function(o, i) {
-				o.set( _.filter(qs, function(el) { return el.qid!==qid; } ) );
+				if(o.selected!=='') {
+					arr.push(o.selected);
+				}	
+			});
+			_.each(this.options.othercollections, function(o, i) {
+				var to_remove=_.difference(arr, (o.selected===''?[] : [o.selected]));
+				o.set( _.filter(qs, function(el) { return to_remove.indexOf(el.qid)===-1; }) );
 			});
 		}
 	});
