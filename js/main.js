@@ -39,10 +39,12 @@
 		initialize: function() {
 			this.collection.on('add', this.addOne, this);
 			this.collection.on('sort', this.render, this);
+			this.options.selected=this.options.selected||'';
 		},
 		render: function() {
 			this.$el.html('<option value="">Please choose one of the questions</option>');
 			this.collection.each( this.addOne, this);
+			this.$el.val( this.options.selected );
 			return this;
 		},
 		addOne: function(question) {
@@ -51,6 +53,7 @@
 		},
 		changeSelect: function(e) {
 			var qid=this.$el.val();
+			this.options.selected=qid;
 			if(qid==='') { return; }
 			var question=this.collection.findWhere({qid: qid});
 			/*this.options.othercollections.each( function(o) {
@@ -61,7 +64,9 @@
 	});
 
 	window.questions=new App.Collections.Questions([{qid:'5', question: 'question 5'}, {qid: '1', question: 'question 1'}, {qid: '3', question: 'question 3'}])
-	var v=new App.Views.QuestionsCollection({collection: questions});
-	$('#dd-wr1').html(v.render().el);
+	window.qv1=new App.Views.QuestionsCollection({collection: questions});
+	window.qv2=new App.Views.QuestionsCollection({collection: questions});
+	$('#dd-wr1').html(qv1.render().el);
+	$('#dd-wr2').html(qv2.render().el);
 	// questions.add({qid:'0', question: 'question 0'})
 } )();
