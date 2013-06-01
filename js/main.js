@@ -25,6 +25,10 @@
 	});
 	App.Collections.Questions=Backbone.Collection.extend({
 		model: App.Models.Question,
+		initialize: function(models, options) {
+			options||(options={});
+			this.selected=options.title||'';
+		},
 		comparator: function(q) {
 			return q.get('qid');
 		}
@@ -46,12 +50,11 @@
 		initialize: function() {
 			this.collection.on('add', this.addOne, this);
 			this.collection.on('sort', this.render, this);
-			this.options.selected=this.options.selected||'';
 		},
 		render: function() {
 			this.$el.html('<option value="">Please choose one of the questions</option>');
 			this.collection.each( this.addOne, this);
-			this.$el.val( this.options.selected );
+			this.$el.val( this.collection.selected );
 			return this;
 		},
 		addOne: function(question) {
@@ -60,7 +63,7 @@
 		},
 		changeSelect: function(e) {
 			var qid=this.$el.val();
-			this.options.selected=qid;
+			this.collection.selected=qid;
 			_.each(this.options.othercollections, function(o, i) {
 				o.set( _.filter(qs, function(el) { return el.qid!==qid; } ) );
 			});
