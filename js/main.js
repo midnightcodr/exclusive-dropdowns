@@ -8,6 +8,13 @@
 		return doT.template( $('#'+id).html() );
 	}
 	var vent=_.extend({}, Backbone.Events);
+	var qs=[
+		{qid: '1', question: 'question 1'},
+		{qid: '2', question: 'question 2'},
+		{qid: '3', question: 'question 3'},
+		{qid: '4', question: 'question 4'},
+		{qid: '5', question: 'question 5'}
+	];
 
 	App.Models.Question=Backbone.Model.extend({
 		defaults: {
@@ -54,19 +61,16 @@
 		changeSelect: function(e) {
 			var qid=this.$el.val();
 			this.options.selected=qid;
-			if(qid==='') { return; }
-			var question=this.collection.findWhere({qid: qid});
-			/*this.options.othercollections.each( function(o) {
-				return;	
-			});*/
-			console.log('todo: handle othercollections');
+			_.each(this.options.othercollections, function(o, i) {
+				o.set( _.filter(qs, function(el) { return el.qid!==qid; } ) );
+			});
 		}
 	});
 
-	window.questions=new App.Collections.Questions([{qid:'5', question: 'question 5'}, {qid: '1', question: 'question 1'}, {qid: '3', question: 'question 3'}])
-	window.qv1=new App.Views.QuestionsCollection({collection: questions});
-	window.qv2=new App.Views.QuestionsCollection({collection: questions});
+	questions1=new App.Collections.Questions(qs);
+	questions2=new App.Collections.Questions(qs);
+	window.qv1=new App.Views.QuestionsCollection({collection: questions1, othercollections:[questions2]});
+	window.qv2=new App.Views.QuestionsCollection({collection: questions2, othercollections:[questions1]});
 	$('#dd-wr1').html(qv1.render().el);
 	$('#dd-wr2').html(qv2.render().el);
-	// questions.add({qid:'0', question: 'question 0'})
 } )();
