@@ -67,10 +67,10 @@
 		}
 	});
 
-	questions1=new App.Collections.Questions(qs);
-	questions2=new App.Collections.Questions(qs);
-	window.qv1=new App.Views.QuestionsCollection({collection: questions1, othercollections:[questions2]});
-	window.qv2=new App.Views.QuestionsCollection({collection: questions2, othercollections:[questions1]});
+	var questions1=new App.Collections.Questions(qs);
+	var questions2=new App.Collections.Questions(qs);
+	var qv1=new App.Views.QuestionsCollection({collection: questions1, othercollections:[questions2]});
+	var qv2=new App.Views.QuestionsCollection({collection: questions2, othercollections:[questions1]});
 	$('#dd-wr1').html(qv1.render().el);
 	$('#dd-wr2').html(qv2.render().el);
 } )();
