@@ -7,4 +7,4 @@ We've seen this many times. Usually when a user registers for a new account on a
 * I am pretty sure there are other ways to implement this kind of feature. I am just show you how I solved the problem (using Backbone.js).
 
 # Screenshot
-!(rendering demo)[https://raw.github.com/midnightcodr/exclusive-dropdowns/master/screenshot.png]
+![rendering demo](https://raw.github.com/midnightcodr/exclusive-dropdowns/master/screenshot.png)
