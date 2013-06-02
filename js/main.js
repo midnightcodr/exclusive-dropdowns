@@ -83,8 +83,11 @@
 
 	var questions1=new App.Collections.Questions(qs);
 	var questions2=new App.Collections.Questions(qs);
-	var qv1=new App.Views.QuestionsCollection({collection: questions1, othercollections:[questions2]});
-	var qv2=new App.Views.QuestionsCollection({collection: questions2, othercollections:[questions1]});
+	var questions3=new App.Collections.Questions(qs);
+	var qv1=new App.Views.QuestionsCollection({collection: questions1, othercollections:[questions2, questions3]});
+	var qv2=new App.Views.QuestionsCollection({collection: questions2, othercollections:[questions1, questions3]});
+	var qv3=new App.Views.QuestionsCollection({collection: questions3, othercollections:[questions1, questions2]});
 	$('#dd-wr1').html(qv1.render().el);
 	$('#dd-wr2').html(qv2.render().el);
+	$('#dd-wr3').html(qv3.render().el);
 } )();
