@@ -5,3 +5,6 @@ We've seen this many times. Usually when a user registers for a new account on a
 * While this feature will prevent user from picking the same questions on the front end, it doesn't mean server-end validation should be skipped. Always validate user input.
 * If you add/remove model to the collection during runtime, the corresponding dropdown should re-render using the order specified by itemid, which is string formatted, which means if you have more than 9 questions, you should 0-padding the itemid.
 * I am pretty sure there are other ways to implement this kind of feature. I am just show you how I solved the problem (using Backbone.js).
+
+# Screenshot
+!(rendering demo)[https://raw.github.com/midnightcodr/exclusive-dropdowns/master/screenshot.png]
