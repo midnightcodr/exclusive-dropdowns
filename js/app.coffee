@@ -55,7 +55,7 @@ f= (global, list) ->
 
 			_.each @options.othercollections, (o, i) ->
 				to_remove=_.difference arr, (if o.selected is '' then [] else [o.selected])
-				o.set _.filter( list, (el)-> to_remove.indexOf(el.itemid) is -1 )
+				o.set _.filter( list, (el)-> _.indexOf(to_remove, el.itemid) is -1 )
 
 		
 	items1=new App.C.Items(list)

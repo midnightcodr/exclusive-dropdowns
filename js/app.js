@@ -73,7 +73,7 @@
           var to_remove;
           to_remove = _.difference(arr, (o.selected === '' ? [] : [o.selected]));
           return o.set(_.filter(list, function(el) {
-            return to_remove.indexOf(el.itemid) === -1;
+            return _.indexOf(to_remove, el.itemid) === -1;
           }));
         });
       }
