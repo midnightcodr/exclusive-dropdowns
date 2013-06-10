@@ -40,8 +40,8 @@ Exdropdown = function(list, config) {
       'change': 'changeSelect'
     },
     initialize: function() {
-      this.collection.on('add', this.addOne, this);
-      return this.collection.on('sort', this.render, this);
+      this.listenTo(this.collection, 'add', this.addOne);
+      return this.listenTo(this.collection, 'sort', this.render);
     },
     render: function() {
       var prompt;

@@ -33,8 +33,8 @@ Exdropdown = (list, config) ->
 			events: { 'change': 'changeSelect' }
 			,
 			initialize: ->
-				@collection.on 'add', @addOne, @
-				@collection.on 'sort', @render, @
+				@.listenTo @collection, 'add', @addOne
+				@.listenTo @collection, 'sort', @render
 			,
 			render: ->
 				prompt=config.prompt||'Please choose one of the items'
