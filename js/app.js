@@ -73,7 +73,7 @@ Exdropdown = function(list, config) {
       });
       return _.each(this.options.othercollections, function(o, i) {
         var to_remove;
-        to_remove = _.difference(arr, (o.selected === '' ? [] : [o.selected]));
+        to_remove = _.without(arr, o.selected);
         return o.set(_.filter(list, function(el) {
           return _.indexOf(to_remove, el.itemid) === -1;
         }));

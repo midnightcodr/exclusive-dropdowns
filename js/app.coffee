@@ -56,7 +56,7 @@ Exdropdown = (list, config) ->
 					arr.push o.selected if o.selected isnt ''
 
 				_.each @options.othercollections, (o, i) ->
-					to_remove=_.difference arr, (if o.selected is '' then [] else [o.selected])
+					to_remove=_.without arr, o.selected
 					o.set _.filter( list, (el)-> _.indexOf(to_remove, el.itemid) is -1 )
 
 		render = ->
